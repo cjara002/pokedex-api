@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pokedex.pokedex_api.service.PokemonService;
+
 // @RestController tells Spring "this class handles HTTP requests"
 // It combines @Controller and @ResponseBody into one annotation
 // Think of this as [ApiController] in .NET
@@ -15,13 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 // Think of this as [Route("api/pokemon")] in .NET
 @RequestMapping("/api/pokemon")
 public class PokemonController {
+    // Spring sees @Service on PokemonService and automatically
+    // injects it here through constructor injection
+    // This is identical in concept to .NET's dependency injection
+    private final PokemonService pokemonService;
+
+    public PokemonController(PokemonService pokemonService) {
+        this.pokemonService = pokemonService;
+    }
 
     // @GetMapping maps HTTP GET requests to this method
     // {name} is a path variable, just like [HttpGet("{name}")] in .NET
     @GetMapping("/{name}")
     public String getPokemon(@PathVariable String name) {
-        // For now we return a hardcoded string just to prove the server works
-        // We'll replace this with a real PokéAPI call in the next sprint
-        return "You searched for: " + name;
+        // Now the controller just delegates to the service
+        // It has no idea HOW the data is fetched - that's the service's job
+        return pokemonService.getPokemon(name);
     }
 }
