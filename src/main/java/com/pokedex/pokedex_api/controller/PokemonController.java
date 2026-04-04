@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pokedex.pokedex_api.model.Pokemon;
 import com.pokedex.pokedex_api.service.PokemonService;
 
 // @RestController tells Spring "this class handles HTTP requests"
@@ -29,7 +30,8 @@ public class PokemonController {
     // @GetMapping maps HTTP GET requests to this method
     // {name} is a path variable, just like [HttpGet("{name}")] in .NET
     @GetMapping("/{name}")
-    public String getPokemon(@PathVariable String name) {
+    public Pokemon getPokemon(@PathVariable String name) {
+    // public String getPokemon(@PathVariable String name) {
         // Now the controller just delegates to the service
         // It has no idea HOW the data is fetched - that's the service's job
         return pokemonService.getPokemon(name);
