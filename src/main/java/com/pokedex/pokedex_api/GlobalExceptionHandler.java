@@ -1,5 +1,6 @@
 package com.pokedex.pokedex_api;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,6 +10,7 @@ import org.springframework.web.client.ResourceAccessException;
 
 // @ControllerAdvice tells Spring "this class handles exceptions
 // thrown by ANY controller in the entire application"
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
     // @ExceptionHandler tells Spring which specific exception

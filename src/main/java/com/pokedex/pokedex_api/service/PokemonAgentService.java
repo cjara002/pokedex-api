@@ -9,11 +9,13 @@ import com.google.genai.types.Content;
 import com.google.genai.types.Part;
 import com.pokedex.pokedex_api.model.Pokemon;
 import io.reactivex.rxjava3.core.Flowable;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
+@Slf4j
 @Service
 public class PokemonAgentService {
     private static PokemonService pokemonService;
@@ -96,7 +98,7 @@ public class PokemonAgentService {
                     : response.get();
 
         } catch (Throwable t) {
-             log.error("Agent call failed", t);
+            log.error("Agent call failed", t);
             return "Sorry, I encountered an error: " + t.getMessage();
         }
     }
