@@ -57,3 +57,5 @@ jobs:
             --memory=1Gi
             --allow-unauthenticated
             --set-env-vars=^@^ALLOWED_ORIGINS=http://localhost:4200,https://pokedex-ai-agent.netlify.app
+          secrets: |-
+            GOOGLE_API_KEY=gemini-api-key:latest

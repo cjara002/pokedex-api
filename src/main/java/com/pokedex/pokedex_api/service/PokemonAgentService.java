@@ -95,8 +95,9 @@ public class PokemonAgentService {
                     ? "I couldn't find an answer to that question."
                     : response.get();
 
-        } catch (Exception e) {
-            return "Sorry, I encountered an error: " + e.getMessage();
+        } catch (Throwable t) {
+             log.error("Agent call failed", t);
+            return "Sorry, I encountered an error: " + t.getMessage();
         }
     }
 }

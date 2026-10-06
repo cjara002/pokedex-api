@@ -32,6 +32,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGeneral(Exception ex){
+        log.error("Unhandled exception", ex);
         return ResponseEntity
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
         .body("Something went wrong. Please try again.");
